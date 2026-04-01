@@ -108,18 +108,23 @@ nav {
   align-items: center;
   justify-content: center;
   height: 100%;
-  background: rgba(108, 59, 245, 0.05);
+  background: transparent;
   border-left: 1px solid var(--border);
   position: relative;
-  overflow: visible;
+  overflow: hidden;
 }
 
-.hero-right::before {
-  content: '';
+.hero-bg-art {
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at 60% 40%, rgba(108,59,245,0.12) 0%, transparent 70%);
-  pointer-events: none;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.hero-right .profile-photo-wrap {
+  position: relative;
+  z-index: 1;
 }
 
 .hero-name-row {

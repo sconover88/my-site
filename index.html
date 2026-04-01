@@ -277,6 +277,89 @@
       </div>
     </div>
     <div class="hero-right">
+      <svg class="hero-bg-art" viewBox="0 0 500 700" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <defs>
+          <linearGradient id="h3d-bg" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0%" stop-color="#3A24CC"/>
+            <stop offset="100%" stop-color="#7A6AE8"/>
+          </linearGradient>
+          <radialGradient id="h3d-orb-o" cx="38%" cy="32%" r="60%">
+            <stop offset="0%" stop-color="#FFA040"/>
+            <stop offset="100%" stop-color="#C04800"/>
+          </radialGradient>
+          <radialGradient id="h3d-orb-w" cx="35%" cy="30%" r="60%">
+            <stop offset="0%" stop-color="#FFFFFF"/>
+            <stop offset="100%" stop-color="#B8B8D0"/>
+          </radialGradient>
+        </defs>
+
+        <!-- Background -->
+        <rect width="500" height="700" fill="url(#h3d-bg)"/>
+
+        <!-- Isometric grid lines -->
+        <g opacity="0.07" stroke="#fff" stroke-width="1">
+          <line x1="-200" y1="800" x2="800" y2="250"/>
+          <line x1="-200" y1="640" x2="800" y2="90"/>
+          <line x1="-200" y1="480" x2="800" y2="-70"/>
+          <line x1="-200" y1="960" x2="800" y2="410"/>
+          <line x1="700" y1="800" x2="-300" y2="250"/>
+          <line x1="700" y1="640" x2="-300" y2="90"/>
+          <line x1="700" y1="480" x2="-300" y2="-70"/>
+          <line x1="700" y1="960" x2="-300" y2="410"/>
+        </g>
+
+        <!-- Lavender cube (upper-left of pink): center(315,172), r=40, h=50 -->
+        <polygon points="315,152 355,172 315,192 275,172" fill="#D4CCFF"/>
+        <polygon points="275,172 315,192 315,242 275,222" fill="#A898F0"/>
+        <polygon points="355,172 315,192 315,242 355,222" fill="#9080E0"/>
+
+        <!-- Pink cube (upper-right): center(415,100), r=52, h=68 -->
+        <polygon points="415,74 467,100 415,126 363,100" fill="#FFD8E4"/>
+        <polygon points="363,100 415,126 415,194 363,168" fill="#FFB0C4"/>
+        <polygon points="467,100 415,126 415,194 467,168" fill="#FF90A8"/>
+
+        <!-- Small floating white cube (upper-left): center(85,265), r=17, h=21 -->
+        <polygon points="85,256 102,265 85,274 68,265" fill="rgba(255,255,255,0.72)"/>
+        <polygon points="68,265 85,274 85,295 68,286" fill="rgba(255,255,255,0.42)"/>
+        <polygon points="102,265 85,274 85,295 102,286" fill="rgba(255,255,255,0.55)"/>
+
+        <!-- Platform: center(255,540), r=122, h=22 -->
+        <polygon points="255,479 377,540 255,601 133,540" fill="#6858C8"/>
+        <polygon points="133,540 255,601 255,623 133,562" fill="#4840A0"/>
+        <polygon points="377,540 255,601 255,623 377,562" fill="#382E96"/>
+
+        <!-- Blue/cyan cube on platform (left): center(188,468), r=52, h=68 -->
+        <polygon points="188,442 240,468 188,494 136,468" fill="#AADCFF"/>
+        <polygon points="136,468 188,494 188,562 136,536" fill="#72B8E8"/>
+        <polygon points="240,468 188,494 188,562 240,536" fill="#58A4D4"/>
+
+        <!-- Yellow/gold box on platform (right): center(372,458), r=58, h=54 -->
+        <polygon points="372,429 430,458 372,487 314,458" fill="#FFE84A"/>
+        <polygon points="314,458 372,487 372,541 314,512" fill="#D8B800"/>
+        <polygon points="430,458 372,487 372,541 430,512" fill="#B89000"/>
+
+        <!-- Orange sphere -->
+        <circle cx="346" cy="502" r="26" fill="url(#h3d-orb-o)"/>
+
+        <!-- Platform hole -->
+        <ellipse cx="262" cy="588" rx="16" ry="9" fill="rgba(0,0,0,0.55)"/>
+
+        <!-- White sphere (large, right) -->
+        <circle cx="450" cy="570" r="23" fill="url(#h3d-orb-w)"/>
+
+        <!-- White sphere (small, lower-left) -->
+        <circle cx="122" cy="608" r="15" fill="url(#h3d-orb-w)"/>
+
+        <!-- Small white cube right: center(456,454), r=15, h=18 -->
+        <polygon points="456,446 471,454 456,462 441,454" fill="rgba(255,255,255,0.65)"/>
+        <polygon points="441,454 456,462 456,480 441,472" fill="rgba(255,255,255,0.38)"/>
+        <polygon points="471,454 456,462 456,480 471,472" fill="rgba(255,255,255,0.5)"/>
+
+        <!-- Small white cube bottom: center(205,646), r=13, h=16 -->
+        <polygon points="205,640 218,646 205,652 192,646" fill="rgba(255,255,255,0.55)"/>
+        <polygon points="192,646 205,652 205,668 192,662" fill="rgba(255,255,255,0.32)"/>
+        <polygon points="218,646 205,652 205,668 218,662" fill="rgba(255,255,255,0.42)"/>
+      </svg>
       <div class="profile-photo-wrap hero-photo-wrap">
         <img
           src="pictures/Picture of Me.png"
