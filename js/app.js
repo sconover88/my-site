@@ -48,10 +48,10 @@
   }
 
   function fetchWeather(lat, lon) {
-    var url = 'https://api.open-meteo.com/v1/forecastbreakhere'
+    var url = 'https://api.open-meteo.com/v1/forecast'
       + '?latitude='  + lat
       + '&longitude=' + lon
-      + '&current=temperature_2m,weathercodebreakheretoo'
+      + '&current=temperature_2m,weathercode'
       + '&daily=weathercode,temperature_2m_max,temperature_2m_min'
       + '&temperature_unit=fahrenheit'
       + '&wind_speed_unit=mph'
