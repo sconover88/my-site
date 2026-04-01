@@ -10,40 +10,82 @@
     /* ── WEATHER CARD ── */
     .weather-widget {
       position: fixed;
-      top: 5rem;
-      right: 2rem;
-      z-index: 50;
-      width: 200px;
+      bottom: 1.75rem;
+      right: 1.75rem;
+      z-index: 200;
+      width: 240px;
       background: var(--surface);
       border: 1px solid var(--border);
-      border-top: none;
-      border-radius: 0 0 4px 4px;
+      border-radius: 4px;
       box-shadow:
-        0 2px 8px rgba(0,0,0,0.45),
-        0 8px 32px rgba(0,0,0,0.35),
+        0 4px 16px rgba(0,0,0,0.5),
+        0 12px 40px rgba(0,0,0,0.4),
         inset 0 1px 0 rgba(255,255,255,0.04);
       overflow: hidden;
       cursor: default;
       user-select: none;
-      transition: box-shadow 0.3s, border-color 0.3s, transform 0.3s;
+      transition: box-shadow 0.3s, border-color 0.3s;
     }
     .weather-widget:hover {
       border-color: #363636;
       box-shadow:
-        0 4px 16px rgba(0,0,0,0.55),
-        0 16px 48px rgba(0,0,0,0.4),
+        0 6px 24px rgba(0,0,0,0.6),
+        0 20px 56px rgba(0,0,0,0.45),
         inset 0 1px 0 rgba(255,255,255,0.05);
-      transform: translateY(2px);
     }
 
-    /* card header — dark band with label + city */
+    /* card header — dark band with label + city + toggle */
     .w-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0.7rem 1.1rem;
+      padding: 0.7rem 0.75rem 0.7rem 1.1rem;
       background: rgba(0,0,0,0.35);
       border-bottom: 1px solid var(--border);
+      cursor: pointer;
+    }
+    .w-header:hover { background: rgba(0,0,0,0.45); }
+    .w-header-left {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      min-width: 0;
+    }
+    .w-toggle {
+      width: 22px;
+      height: 22px;
+      border: 1px solid var(--border);
+      border-radius: 2px;
+      background: transparent;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: border-color 0.2s, color 0.2s;
+      cursor: pointer;
+      padding: 0;
+    }
+    .w-toggle svg {
+      display: block;
+      transition: transform 0.25s ease;
+    }
+    .w-header:hover .w-toggle {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* collapsed state */
+    .w-collapsed .w-today,
+    .w-collapsed .w-days,
+    .w-collapsed .w-footer {
+      display: none;
+    }
+    .w-collapsed .w-header {
+      border-bottom: none;
+    }
+    .w-collapsed .w-toggle svg {
+      transform: rotate(180deg);
     }
     .w-label {
       font-size: 0.58rem;
@@ -64,24 +106,24 @@
       text-align: right;
     }
 
-    /* card body */
-    .w-body {
-      padding: 1.4rem 1.25rem 0.3rem;
+    /* today strip */
+    .w-today {
+      padding: 1.1rem 1.25rem 0.9rem;
       display: flex;
-      align-items: flex-start;
-      gap: 0.75rem;
+      align-items: center;
+      gap: 0.85rem;
+      border-bottom: 1px solid var(--border);
     }
     #w-icon {
-      font-size: 2.4rem;
+      font-size: 2.2rem;
       line-height: 1;
       flex-shrink: 0;
-      margin-top: 0.15rem;
     }
     .w-readings {}
     #w-temp {
       display: block;
       font-family: 'Playfair Display', serif;
-      font-size: 2.5rem;
+      font-size: 2.25rem;
       font-weight: 900;
       line-height: 1;
       letter-spacing: -0.04em;
@@ -89,11 +131,51 @@
     }
     #w-desc {
       display: block;
-      font-size: 0.6rem;
+      font-size: 0.58rem;
       letter-spacing: 0.14em;
       text-transform: uppercase;
       color: var(--muted);
-      margin-top: 0.35rem;
+      margin-top: 0.3rem;
+    }
+
+    /* 5-day rows */
+    .w-days {
+      display: flex;
+      flex-direction: column;
+    }
+    .w-day {
+      display: grid;
+      grid-template-columns: 2.8rem 1.6rem 1fr;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.55rem 1.25rem;
+      border-bottom: 1px solid var(--border);
+      transition: background 0.15s;
+    }
+    .w-day:last-child { border-bottom: none; }
+    .w-day:hover { background: rgba(255,255,255,0.03); }
+    .w-day-name {
+      font-size: 0.62rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    .w-day-name.is-today {
+      color: var(--accent);
+    }
+    .w-day-icon {
+      font-size: 0.95rem;
+      line-height: 1;
+      text-align: center;
+    }
+    .w-day-temps {
+      font-size: 0.72rem;
+      color: var(--text);
+      text-align: right;
+    }
+    .w-day-lo {
+      color: var(--muted);
+      margin-left: 0.3rem;
     }
 
     /* card footer */
@@ -120,6 +202,7 @@
     }
 
     /* loading pulse */
+    .w-loading .w-today {  opacity: 0.5; }
     .w-loading #w-temp {
       animation: w-pulse 1.4s ease-in-out infinite;
     }
@@ -171,22 +254,32 @@
     </ul>
   </nav>
 
-  <!-- ── WEATHER WIDGET ── -->
-  <aside id="weather-widget" class="weather-widget w-loading" aria-label="Current weather" role="complementary">
-    <div class="w-header">
-      <span class="w-label">Weather</span>
-      <span id="w-loc"></span>
-    </div>
-    <div class="w-body">
-      <span id="w-icon">&#9729;</span>
-      <div class="w-readings">
-        <span id="w-temp">&mdash;</span>
-        <span id="w-desc">Locating&hellip;</span>
+  <!-- ── WEATHER WIDGET (fixed bottom-right) ── -->
+  <aside id="weather-widget" class="weather-widget w-loading" aria-label="5-day weather forecast" role="complementary">
+    <div class="w-header" id="w-toggle-btn" role="button" aria-expanded="true" aria-controls="w-body-wrap" tabindex="0">
+      <div class="w-header-left">
+        <span class="w-label">Weather</span>
+        <span id="w-loc"></span>
       </div>
+      <button class="w-toggle" aria-label="Collapse weather widget">
+        <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </button>
     </div>
-    <div class="w-footer">
-      <span class="w-dot"></span>
-      <span class="w-footer-text">Open-Meteo</span>
+    <div id="w-body-wrap">
+      <div class="w-today">
+        <span id="w-icon">&#9729;</span>
+        <div class="w-readings">
+          <span id="w-temp">&mdash;</span>
+          <span id="w-desc">Locating&hellip;</span>
+        </div>
+      </div>
+      <div id="w-days" class="w-days"></div>
+      <div class="w-footer">
+        <span class="w-dot"></span>
+        <span class="w-footer-text">Open-Meteo</span>
+      </div>
     </div>
   </aside>
 
@@ -530,11 +623,13 @@
 
       function fetchWeather(lat, lon) {
         var url = 'https://api.open-meteo.com/v1/forecast'
-          + '?latitude=' + lat
+          + '?latitude='  + lat
           + '&longitude=' + lon
           + '&current=temperature_2m,weathercode'
+          + '&daily=weathercode,temperature_2m_max,temperature_2m_min'
           + '&temperature_unit=fahrenheit'
           + '&wind_speed_unit=mph'
+          + '&forecast_days=5'
           + '&timezone=auto';
 
         fetch(url)
@@ -543,12 +638,41 @@
             return r.json();
           })
           .then(function (data) {
-            var temp = Math.round(data.current.temperature_2m);
-            var code = data.current.weathercode;
-            var info = WMO[code] || ['Unknown', '\u2601\uFE0F'];
+            // ── Today strip ──
+            var temp    = Math.round(data.current.temperature_2m);
+            var code    = data.current.weathercode;
+            var info    = WMO[code] || ['Unknown', '\u2601\uFE0F'];
             document.getElementById('w-temp').textContent = temp + '\u00B0F';
             document.getElementById('w-desc').textContent = info[0];
             document.getElementById('w-icon').textContent = info[1];
+
+            // ── 5-day rows ──
+            var days    = data.daily.time;                   // ['2026-04-01', ...]
+            var codes   = data.daily.weathercode;
+            var highs   = data.daily.temperature_2m_max;
+            var lows    = data.daily.temperature_2m_min;
+            var DAY_NAMES = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+            var container = document.getElementById('w-days');
+            container.innerHTML = '';
+
+            for (var i = 0; i < days.length; i++) {
+              var d      = new Date(days[i] + 'T12:00:00'); // noon avoids TZ flip
+              var label  = i === 0 ? 'Today' : DAY_NAMES[d.getDay()];
+              var dInfo  = WMO[codes[i]] || ['', '\u2601\uFE0F'];
+              var hi     = Math.round(highs[i]);
+              var lo     = Math.round(lows[i]);
+
+              var row = document.createElement('div');
+              row.className = 'w-day';
+              row.innerHTML =
+                '<span class="w-day-name' + (i === 0 ? ' is-today' : '') + '">' + label + '</span>' +
+                '<span class="w-day-icon">' + dInfo[1] + '</span>' +
+                '<span class="w-day-temps">' + hi + '\u00B0' +
+                  '<span class="w-day-lo">' + lo + '\u00B0</span>' +
+                '</span>';
+              container.appendChild(row);
+            }
+
             document.getElementById('weather-widget').classList.remove('w-loading');
           })
           .catch(function () { setError('Unavailable'); });
@@ -587,6 +711,32 @@
       } else {
         setDenied();
       }
+    })();
+
+    // ── Collapse / expand toggle ──
+    (function () {
+      var widget = document.getElementById('weather-widget');
+      var btn    = document.getElementById('w-toggle-btn');
+      var STORAGE_KEY = 'wx-collapsed';
+
+      // Restore last state
+      if (localStorage.getItem(STORAGE_KEY) === '1') {
+        widget.classList.add('w-collapsed');
+        btn.setAttribute('aria-expanded', 'false');
+      }
+
+      btn.addEventListener('click', function () {
+        var isCollapsed = widget.classList.toggle('w-collapsed');
+        btn.setAttribute('aria-expanded', String(!isCollapsed));
+        localStorage.setItem(STORAGE_KEY, isCollapsed ? '1' : '0');
+      });
+
+      btn.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          btn.click();
+        }
+      });
     })();
   </script>
 </body>
