@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact — Scott, Designer</title>
+  <meta name="description" content="Get in touch with Scott to discuss your next design project." />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- ── NAVIGATION ── -->
+  <nav>
+    <a class="nav-logo" href="index.html">S<span>.</span></a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="work.html">Work</a></li>
+      <li><a href="contact.html" class="active">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- ── PAGE HERO ── -->
+  <div class="page-hero">
+    <p class="page-hero-label">Get In Touch</p>
+    <h1 class="page-hero-title">Let's make<br>something <em>great</em></h1>
+  </div>
+
+  <!-- ── CONTACT LAYOUT ── -->
+  <div class="contact-layout">
+
+    <!-- LEFT: Info -->
+    <div class="contact-info">
+      <div class="section-title">Tell me about<br>your <em>project</em></div>
+      <p>
+        I'm open to freelance projects, collaborations, and full-time 
+        conversations. If you have something interesting in mind — 
+        a brand to build, a product to shape, a story to tell — 
+        I want to hear it.
+      </p>
+      <p>
+        I typically respond within one business day.
+      </p>
+
+      <ul class="contact-details">
+        <li>
+          <div class="detail-label">Email</div>
+          <div class="detail-value">
+            <a href="mailto:hello@scott.design">hello@scott.design</a>
+          </div>
+        </li>
+        <li>
+          <div class="detail-label">Based In</div>
+          <div class="detail-value">New York, NY — open to remote</div>
+        </li>
+        <li>
+          <div class="detail-label">Availability</div>
+          <div class="detail-value">Available for projects &mdash; Summer 2026</div>
+        </li>
+      </ul>
+
+      <div class="divider"></div>
+
+      <ul class="social-links">
+        <li><a href="#" aria-label="LinkedIn">LinkedIn</a></li>
+        <li><a href="#" aria-label="Instagram">Instagram</a></li>
+        <li><a href="#" aria-label="Dribbble">Dribbble</a></li>
+        <li><a href="#" aria-label="Behance">Behance</a></li>
+        <li><a href="#" aria-label="Read.cv">Read.cv</a></li>
+      </ul>
+    </div>
+
+    <!-- RIGHT: Form -->
+    <form class="contact-form" action="#" method="POST">
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="name">Your Name</label>
+          <input type="text" id="name" name="name" placeholder="Jane Smith" required />
+        </div>
+        <div class="form-group">
+          <label for="email">Email Address</label>
+          <input type="email" id="email" name="email" placeholder="jane@company.com" required />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="company">Company / Organization</label>
+        <input type="text" id="company" name="company" placeholder="Your company (optional)" />
+      </div>
+
+      <div class="form-group">
+        <label for="service">What can I help with?</label>
+        <select id="service" name="service">
+          <option value="" disabled selected>Select a service&hellip;</option>
+          <option value="brand">Brand Identity</option>
+          <option value="digital">Digital Design / UI</option>
+          <option value="art-direction">Art Direction</option>
+          <option value="design-system">Design System</option>
+          <option value="other">Something else</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="budget">Approximate Budget</label>
+        <select id="budget" name="budget">
+          <option value="" disabled selected>Select a range&hellip;</option>
+          <option value="5-10k">$5k &ndash; $10k</option>
+          <option value="10-25k">$10k &ndash; $25k</option>
+          <option value="25-50k">$25k &ndash; $50k</option>
+          <option value="50k+">$50k+</option>
+          <option value="tbd">Let's talk</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="message">Tell me about your project</label>
+        <textarea id="message" name="message" placeholder="What are you building, who is it for, and what does success look like?" required></textarea>
+      </div>
+
+      <button type="submit" class="form-submit">Send Message</button>
+
+    </form>
+  </div>
+
+  <!-- ── FOOTER ── -->
+  <footer>
+    <p class="footer-copy">&copy; 2026 Scott. All rights reserved.</p>
+    <ul class="footer-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="work.html">Work</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="#" aria-label="LinkedIn">LinkedIn</a></li>
+      <li><a href="#" aria-label="Instagram">Instagram</a></li>
+    </ul>
+  </footer>
+
+</body>
+</html>
