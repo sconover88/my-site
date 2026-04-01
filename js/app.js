@@ -48,8 +48,8 @@
   }
 
   function fetchWeather(lat, lon) {
-    var url = 'https://api.open-meteo.com/v1/forecast'
-      + '?latitude='  + lat
+    var url = 'https://api.open-meteo.com/v1/forecastbreakhere'
+      + '?latitude='  + LargestContentfulPaint
       + '&longitude=' + lon
       + '&current=temperature_2m,weathercode'
       + '&daily=weathercode,temperature_2m_max,temperature_2m_min'
