@@ -16,35 +16,34 @@
       width: 240px;
       background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: 4px;
+      border-radius: 20px;
       box-shadow:
-        0 4px 16px rgba(0,0,0,0.5),
-        0 12px 40px rgba(0,0,0,0.4),
-        inset 0 1px 0 rgba(255,255,255,0.04);
+        0 4px 24px rgba(26, 16, 40, 0.1),
+        0 16px 48px rgba(108, 59, 245, 0.1);
       overflow: hidden;
       cursor: default;
       user-select: none;
-      transition: box-shadow 0.3s, border-color 0.3s;
+      transition: box-shadow 0.3s, border-color 0.3s, transform 0.3s;
     }
     .weather-widget:hover {
-      border-color: #363636;
+      border-color: rgba(108, 59, 245, 0.3);
       box-shadow:
-        0 6px 24px rgba(0,0,0,0.6),
-        0 20px 56px rgba(0,0,0,0.45),
-        inset 0 1px 0 rgba(255,255,255,0.05);
+        0 8px 32px rgba(26, 16, 40, 0.12),
+        0 24px 64px rgba(108, 59, 245, 0.16);
+      transform: translateY(-2px);
     }
 
-    /* card header — dark band with label + city + toggle */
+    /* card header */
     .w-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       padding: 0.7rem 0.75rem 0.7rem 1.1rem;
-      background: rgba(0,0,0,0.35);
+      background: rgba(108, 59, 245, 0.06);
       border-bottom: 1px solid var(--border);
       cursor: pointer;
     }
-    .w-header:hover { background: rgba(0,0,0,0.45); }
+    .w-header:hover { background: rgba(108, 59, 245, 0.1); }
     .w-header-left {
       display: flex;
       align-items: center;
@@ -54,15 +53,15 @@
     .w-toggle {
       width: 22px;
       height: 22px;
-      border: 1px solid var(--border);
-      border-radius: 2px;
+      border: 1.5px solid var(--border);
+      border-radius: 6px;
       background: transparent;
       color: var(--muted);
       display: flex;
       align-items: center;
       justify-content: center;
       flex-shrink: 0;
-      transition: border-color 0.2s, color 0.2s;
+      transition: border-color 0.2s, color 0.2s, background 0.2s;
       cursor: pointer;
       padding: 0;
     }
@@ -73,31 +72,29 @@
     .w-header:hover .w-toggle {
       border-color: var(--accent);
       color: var(--accent);
+      background: rgba(108, 59, 245, 0.08);
     }
 
     /* collapsed state */
     .w-collapsed .w-today,
     .w-collapsed .w-days,
-    .w-collapsed .w-footer {
-      display: none;
-    }
-    .w-collapsed .w-header {
-      border-bottom: none;
-    }
-    .w-collapsed .w-toggle svg {
-      transform: rotate(180deg);
-    }
+    .w-collapsed .w-footer { display: none; }
+    .w-collapsed .w-header { border-bottom: none; }
+    .w-collapsed .w-toggle svg { transform: rotate(180deg); }
+
     .w-label {
       font-size: 0.58rem;
-      letter-spacing: 0.22em;
+      letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--muted);
+      font-weight: 600;
+      font-family: 'Space Grotesk', sans-serif;
     }
     #w-loc {
       font-size: 0.64rem;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.06em;
       color: var(--text);
-      font-weight: 400;
+      font-weight: 500;
       min-width: 0;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -119,12 +116,11 @@
       line-height: 1;
       flex-shrink: 0;
     }
-    .w-readings {}
     #w-temp {
       display: block;
-      font-family: 'Playfair Display', serif;
+      font-family: 'Space Grotesk', sans-serif;
       font-size: 2.25rem;
-      font-weight: 900;
+      font-weight: 700;
       line-height: 1;
       letter-spacing: -0.04em;
       color: var(--accent);
@@ -132,17 +128,15 @@
     #w-desc {
       display: block;
       font-size: 0.58rem;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.12em;
       text-transform: uppercase;
       color: var(--muted);
       margin-top: 0.3rem;
+      font-weight: 500;
     }
 
     /* 5-day rows */
-    .w-days {
-      display: flex;
-      flex-direction: column;
-    }
+    .w-days { display: flex; flex-direction: column; }
     .w-day {
       display: grid;
       grid-template-columns: 2.8rem 1.6rem 1fr;
@@ -153,86 +147,69 @@
       transition: background 0.15s;
     }
     .w-day:last-child { border-bottom: none; }
-    .w-day:hover { background: rgba(255,255,255,0.03); }
+    .w-day:hover { background: rgba(108, 59, 245, 0.04); }
     .w-day-name {
       font-size: 0.62rem;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--muted);
+      font-weight: 500;
     }
-    .w-day-name.is-today {
-      color: var(--accent);
-    }
-    .w-day-icon {
-      font-size: 0.95rem;
-      line-height: 1;
-      text-align: center;
-    }
-    .w-day-temps {
-      font-size: 0.72rem;
-      color: var(--text);
-      text-align: right;
-    }
-    .w-day-lo {
-      color: var(--muted);
-      margin-left: 0.3rem;
-    }
+    .w-day-name.is-today { color: var(--accent); font-weight: 700; }
+    .w-day-icon { font-size: 0.95rem; line-height: 1; text-align: center; }
+    .w-day-temps { font-size: 0.72rem; color: var(--text); text-align: right; font-weight: 500; }
+    .w-day-lo { color: var(--muted); margin-left: 0.3rem; }
 
     /* card footer */
     .w-footer {
-      margin: 1.1rem 1.25rem 1.1rem;
-      padding-top: 0.9rem;
+      margin: 0.9rem 1.25rem;
+      padding-top: 0.75rem;
       border-top: 1px solid var(--border);
       display: flex;
       align-items: center;
       gap: 0.4rem;
     }
     .w-dot {
-      width: 5px;
-      height: 5px;
+      width: 5px; height: 5px;
       border-radius: 50%;
       background: var(--accent);
       flex-shrink: 0;
     }
     .w-footer-text {
-      font-size: 0.58rem;
+      font-size: 0.56rem;
       letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: var(--border);
+      color: var(--muted);
+      font-weight: 500;
     }
 
     /* loading pulse */
-    .w-loading .w-today {  opacity: 0.5; }
-    .w-loading #w-temp {
-      animation: w-pulse 1.4s ease-in-out infinite;
-    }
+    .w-loading .w-today { opacity: 0.6; }
+    .w-loading #w-temp { animation: w-pulse 1.4s ease-in-out infinite; }
     @keyframes w-pulse {
-      0%, 100% { opacity: 0.25; }
-      50%       { opacity: 0.75; }
+      0%, 100% { opacity: 0.2; }
+      50%       { opacity: 0.7; }
     }
 
-    /* denied / error state */
+    /* denied state */
     .weather-widget.w-denied .w-body {
       flex-direction: column;
       gap: 0.5rem;
       padding-bottom: 1rem;
     }
-    .w-denied-icon {
-      font-size: 1.6rem;
-      line-height: 1;
-    }
+    .w-denied-icon { font-size: 1.6rem; line-height: 1; }
     .w-denied-msg {
       font-size: 0.68rem;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.04em;
       color: var(--muted);
       line-height: 1.6;
     }
     .w-denied-msg strong {
       display: block;
       color: var(--text);
-      font-weight: 500;
+      font-weight: 600;
       margin-bottom: 0.2rem;
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       letter-spacing: 0.1em;
       text-transform: uppercase;
     }
@@ -285,37 +262,46 @@
 
   <!-- ── HERO ── -->
   <section class="hero">
-    <p class="hero-eyebrow">Available for new projects &mdash; 2026</p>
-    <h1 class="hero-name">SC<em>OT</em>T</h1>
-    <div class="hero-sub">
-      <p class="hero-tagline">
-        A <strong>designer</strong> who believes great work lives at
-        the intersection of beauty, clarity, and purpose.
-      </p>
-      <div class="hero-cta">
-        <a href="work.html" class="btn btn-primary">View Work</a>
-        <a href="contact.html" class="btn btn-ghost">Get in Touch</a>
+    <div class="hero-left">
+      <p class="hero-eyebrow">Available for new projects &mdash; 2026</p>
+      <h1 class="hero-name"><em>Scott</em>Conover</h1>
+      <div class="hero-sub">
+        <p class="hero-tagline">
+          A <strong>designer</strong> who believes great work lives at
+          the intersection of beauty, clarity, and purpose.
+        </p>
+        <div class="hero-cta">
+          <a href="work.html" class="btn btn-primary">View Work</a>
+          <a href="contact.html" class="btn btn-ghost">Get in Touch</a>
+        </div>
+      </div>
+    </div>
+    <div class="hero-right">
+      <div class="profile-photo-wrap hero-photo-wrap">
+        <img
+          src="pictures/Picture of Me.png"
+          alt="Scott Conover &mdash; Designer"
+          class="profile-photo hero-photo"
+        />
+      </div>
+    </div>
+    <div class="marquee-band hero-marquee" aria-hidden="true">
+      <div class="marquee-track">
+        <span>Brand Identity</span><span>&#9679;</span>
+        <span>Visual Design</span><span>&#9679;</span>
+        <span>Art Direction</span><span>&#9679;</span>
+        <span>Digital Products</span><span>&#9679;</span>
+        <span>Typography</span><span>&#9679;</span>
+        <span>Design Systems</span><span>&#9679;</span>
+        <span>Brand Identity</span><span>&#9679;</span>
+        <span>Visual Design</span><span>&#9679;</span>
+        <span>Art Direction</span><span>&#9679;</span>
+        <span>Digital Products</span><span>&#9679;</span>
+        <span>Typography</span><span>&#9679;</span>
+        <span>Design Systems</span><span>&#9679;</span>
       </div>
     </div>
   </section>
-
-  <!-- ── MARQUEE ── -->
-  <div class="marquee-band" aria-hidden="true">
-    <div class="marquee-track">
-      <span>Brand Identity</span><span>&#9679;</span>
-      <span>Visual Design</span><span>&#9679;</span>
-      <span>Art Direction</span><span>&#9679;</span>
-      <span>Digital Products</span><span>&#9679;</span>
-      <span>Typography</span><span>&#9679;</span>
-      <span>Design Systems</span><span>&#9679;</span>
-      <span>Brand Identity</span><span>&#9679;</span>
-      <span>Visual Design</span><span>&#9679;</span>
-      <span>Art Direction</span><span>&#9679;</span>
-      <span>Digital Products</span><span>&#9679;</span>
-      <span>Typography</span><span>&#9679;</span>
-      <span>Design Systems</span><span>&#9679;</span>
-    </div>
-  </div>
 
   <!-- ── ABOUT ── -->
   <section id="about">
@@ -488,15 +474,29 @@
       <a href="work.html" class="project-card">
         <div class="project-thumb">
           <svg viewBox="0 0 640 400" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice">
-            <rect width="640" height="400" fill="#CAFF00"/>
-            <text x="32" y="240" font-family="Georgia, serif" font-size="200" font-weight="900" fill="black" opacity="0.08" dominant-baseline="auto">F</text>
-            <text x="40" y="130" font-family="Georgia, serif" font-size="88" font-weight="900" fill="#0B0B0B" dominant-baseline="auto" letter-spacing="-4">FORMA</text>
-            <text x="42" y="160" font-family="Arial, sans-serif" font-size="10" fill="#0B0B0B" letter-spacing="6" opacity="0.5">EDITORIAL DESIGN — 2025</text>
-            <line x1="40" y1="175" x2="400" y2="175" stroke="#0B0B0B" stroke-width="1" opacity="0.3"/>
-            <rect x="40" y="195" width="280" height="7" rx="2" fill="#0B0B0B" opacity="0.15"/>
-            <rect x="40" y="212" width="220" height="7" rx="2" fill="#0B0B0B" opacity="0.1"/>
-            <rect x="40" y="229" width="260" height="7" rx="2" fill="#0B0B0B" opacity="0.1"/>
-            <rect x="480" y="80" width="120" height="240" fill="#0B0B0B" opacity="0.12"/>
+            <defs>
+              <linearGradient id="g3a" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stop-color="#F4EBE0"/>
+                <stop offset="100%" stop-color="#EDE0F5"/>
+              </linearGradient>
+            </defs>
+            <rect width="640" height="400" fill="url(#g3a)"/>
+            <!-- decorative blob -->
+            <circle cx="540" cy="80" r="140" fill="#6C3BF5" opacity="0.08"/>
+            <!-- big ghost letter -->
+            <text x="20" y="320" font-family="Arial, sans-serif" font-size="300" font-weight="900" fill="#6C3BF5" opacity="0.07" dominant-baseline="auto" letter-spacing="-16">F</text>
+            <!-- eyebrow label -->
+            <text x="40" y="80" font-family="Arial, sans-serif" font-size="9" fill="#6C3BF5" letter-spacing="6" font-weight="600" opacity="0.7">EDITORIAL DESIGN — 2025</text>
+            <line x1="40" y1="92" x2="160" y2="92" stroke="#6C3BF5" stroke-width="1.5" opacity="0.35"/>
+            <!-- headline -->
+            <text x="38" y="175" font-family="Arial, sans-serif" font-size="82" font-weight="900" fill="#2D1B69" dominant-baseline="auto" letter-spacing="-5">FORMA</text>
+            <!-- body text lines -->
+            <rect x="40" y="198" width="300" height="6" rx="3" fill="#2D1B69" opacity="0.12"/>
+            <rect x="40" y="213" width="240" height="6" rx="3" fill="#2D1B69" opacity="0.08"/>
+            <rect x="40" y="228" width="270" height="6" rx="3" fill="#2D1B69" opacity="0.08"/>
+            <!-- purple sidebar block -->
+            <rect x="500" y="60" width="110" height="280" rx="12" fill="#6C3BF5" opacity="0.12"/>
+            <rect x="520" y="90" width="70" height="70" rx="8" fill="#6C3BF5" opacity="0.18"/>
           </svg>
         </div>
         <div class="project-info">
